@@ -50,6 +50,10 @@ android {
 }
 
 dependencies {
+    // Libs
+    implementation(projects.easing)
+
+    // External Libs
     implementation(libs.androidx.coreKtx)
     implementation(libs.androidx.lifecycle)
     implementation(libs.androidx.activityCompose)
@@ -61,6 +65,7 @@ dependencies {
     testImplementation(libs.junit)
 
     implementation(libs.compose.ui)
+    implementation(libs.compose.animation)
     implementation(libs.compose.material)
     implementation(libs.compose.toolingPreview)
     androidTestImplementation(libs.compose.test)

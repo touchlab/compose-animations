@@ -14,3 +14,4 @@ rootProject.name = "ComposeAnimations"
 
 // Modules
 include(":app")
+include(":easing")
