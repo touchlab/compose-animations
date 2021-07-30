@@ -1,5 +1,30 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
+  <component name="DesignSurface">
+    <option name="filePathToZoomLevelMap">
+      <map>
+        <entry key="../../../../../../layout/compose-model-1627511840069.xml" value="0.34797297297297297" />
+        <entry key="../../../../../../layout/compose-model-1627512671271.xml" value="2.0" />
+        <entry key="../../../../../../layout/compose-model-1627512681467.xml" value="2.0" />
+        <entry key="../../../../../../layout/compose-model-1627512683569.xml" value="0.6259259259259259" />
+        <entry key="../../../../../../layout/compose-model-1627666738542.xml" value="0.912962962962963" />
+        <entry key="../../../../../../layout/compose-model-1627667128232.xml" value="0.912962962962963" />
+        <entry key="../../../../../../layout/compose-model-1627667487366.xml" value="2.0" />
+        <entry key="../../../../../../layout/compose-model-1627667671027.xml" value="0.6185185185185185" />
+        <entry key="../../../../../../layout/compose-model-1627667828505.xml" value="0.6185185185185185" />
+        <entry key="../../../../../../layout/compose-model-1627672081344.xml" value="0.6185185185185185" />
+        <entry key="../../../../../../layout/compose-model-1627676810173.xml" value="0.6064814814814815" />
+        <entry key="../../../../../../layout/compose-model-1627679041475.xml" value="0.6064814814814815" />
+        <entry key="../../../../../../layout/compose-model-1627679279585.xml" value="0.33614864864864863" />
+        <entry key="../../../../../../layout/compose-model-1627680151984.xml" value="0.6064814814814815" />
+        <entry key="../../../../../../layout/compose-model-1627680575977.xml" value="2.0" />
+        <entry key="../../../../../../layout/compose-model-1627680579544.xml" value="2.0" />
+        <entry key="../../../../../../layout/compose-model-1627680783639.xml" value="2.0" />
+        <entry key="../../../../../../layout/compose-model-1627688180323.xml" value="2.0" />
+        <entry key="app/src/main/res/drawable/baseline_arrow_forward_ios_20.xml" value="0.40520833333333334" />
+      </map>
+    </option>
+  </component>
   <component name="ProjectRootManager" version="2" languageLevel="JDK_11" default="true" project-jdk-name="11" project-jdk-type="JavaSDK">
     <output url="file://$PROJECT_DIR$/build/classes" />
   </component>

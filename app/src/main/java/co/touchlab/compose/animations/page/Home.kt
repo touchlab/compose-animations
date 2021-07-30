@@ -79,5 +79,6 @@ fun DemoLinkPreview() {
 }
 
 private val ALL_DEMOS = listOf(
-    "Easing" to EASING_ROUTE
+    "Easing" to EASING_ROUTE,
+    "Value Animator (Old Animation API)" to VALUE_ANIMATOR_ROUTE,
 )

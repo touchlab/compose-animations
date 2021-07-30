@@ -79,12 +79,11 @@ fun EasingDemo(navController: NavController) {
                 }
             )
         },
-    ) {
-        EasingDemoContent(navController)
-    }
+    ) { EasingDemoContent() }
 }
+
 @Composable
-fun EasingDemoContent(navController: NavController) {
+fun EasingDemoContent() {
     LazyColumn {
         items(ALL_EASIGNS.toList()) { (name, easing) ->
             Graph(

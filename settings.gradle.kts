@@ -15,3 +15,4 @@ rootProject.name = "ComposeAnimations"
 // Modules
 include(":app")
 include(":easing")
+include(":value-animator")

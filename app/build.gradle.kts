@@ -52,6 +52,7 @@ android {
 dependencies {
     // Libs
     implementation(projects.easing)
+    implementation(projects.valueAnimator)
 
     // External Libs
     implementation(libs.androidx.coreKtx)
