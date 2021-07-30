@@ -70,4 +70,6 @@ dependencies {
     implementation(libs.compose.toolingPreview)
     androidTestImplementation(libs.compose.test)
     debugImplementation(libs.compose.tooling)
+
+    implementation("androidx.navigation:navigation-compose:2.4.0-alpha05")
 }

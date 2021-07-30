@@ -1,4 +1,4 @@
-package co.touchlab.compose.animations.demos
+package co.touchlab.compose.animations.page
 
 import androidx.compose.animation.core.Easing
 import androidx.compose.animation.core.FastOutLinearInEasing
@@ -16,7 +16,13 @@ import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.lazy.LazyColumn
 import androidx.compose.foundation.lazy.items
+import androidx.compose.material.Icon
+import androidx.compose.material.IconButton
+import androidx.compose.material.Scaffold
 import androidx.compose.material.Text
+import androidx.compose.material.TopAppBar
+import androidx.compose.material.icons.Icons
+import androidx.compose.material.icons.filled.ArrowBack
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.getValue
 import androidx.compose.ui.Alignment
@@ -26,6 +32,7 @@ import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
+import androidx.navigation.NavController
 import co.touchlab.compose.easing.EaseInBack
 import co.touchlab.compose.easing.EaseInBounce
 import co.touchlab.compose.easing.EaseInCirc
@@ -57,45 +64,27 @@ import co.touchlab.compose.easing.EaseOutQuart
 import co.touchlab.compose.easing.EaseOutQuint
 import co.touchlab.compose.easing.EaseOutSine
 
-val ALL_EASIGNS = mapOf(
-    "LinearEasing (Compose)" to LinearEasing,
-    "FastOutSlowInEasing (Compose)" to FastOutSlowInEasing,
-    "LinearOutSlowInEasing (Compose)" to LinearOutSlowInEasing,
-    "FastOutLinearInEasing (Compose)" to FastOutLinearInEasing,
-    "EaseInSine" to EaseInSine,
-    "EaseOutSine" to EaseOutSine,
-    "EaseInOutSine" to EaseInOutSine,
-    "EaseInQuad" to EaseInQuad,
-    "EaseOutQuad" to EaseOutQuad,
-    "EaseInOutQuad" to EaseInOutQuad,
-    "EaseInCubic" to EaseInCubic,
-    "EaseOutCubic" to EaseOutCubic,
-    "EaseInOutCubic" to EaseInOutCubic,
-    "EaseInQuart" to EaseInQuart,
-    "EaseOutQuart" to EaseOutQuart,
-    "EaseInOutQuart" to EaseInOutQuart,
-    "EaseInQuint" to EaseInQuint,
-    "EaseOutQuint" to EaseOutQuint,
-    "EaseInOutQuint" to EaseInOutQuint,
-    "EaseInExpo" to EaseInExpo,
-    "EaseOutExpo" to EaseOutExpo,
-    "EaseInOutExpo" to EaseInOutExpo,
-    "EaseInCirc" to EaseInCirc,
-    "EaseOutCirc" to EaseOutCirc,
-    "EaseInOutCirc" to EaseInOutCirc,
-    "EaseInBack" to EaseInBack,
-    "EaseOutBack" to EaseOutBack,
-    "EaseInOutBack" to EaseInOutBack,
-    "EaseInElastic" to EaseInElastic,
-    "EaseOutElastic" to EaseOutElastic,
-    "EaseInOutElastic" to EaseInOutElastic,
-    "EaseInBounce" to EaseInBounce,
-    "EaseOutBounce" to EaseOutBounce,
-    "EaseInOutBounce" to EaseInOutBounce,
-)
+val EASING_ROUTE = "demo/easings"
 
 @Composable
-fun EasingDemo() {
+fun EasingDemo(navController: NavController) {
+    Scaffold(
+        topBar = {
+            TopAppBar(
+                title = { Text("Easing functions") },
+                navigationIcon = {
+                    IconButton(onClick = { navController.popBackStack() }) {
+                        Icon(Icons.Filled.ArrowBack, null)
+                    }
+                }
+            )
+        },
+    ) {
+        EasingDemoContent(navController)
+    }
+}
+@Composable
+fun EasingDemoContent(navController: NavController) {
     LazyColumn {
         items(ALL_EASIGNS.toList()) { (name, easing) ->
             Graph(
@@ -146,6 +135,7 @@ fun Graph(
             modifier = Modifier
                 .fillMaxWidth()
                 .height(200.dp)
+                .padding(vertical = 24.dp)
         ) {
             val canvasWidth = size.width
             val canvasHeight = size.height
@@ -214,3 +204,40 @@ fun GraphPreview() {
         easingFunction = LinearEasing
     )
 }
+
+private val ALL_EASIGNS = mapOf(
+    "LinearEasing (Compose)" to LinearEasing,
+    "FastOutSlowInEasing (Compose)" to FastOutSlowInEasing,
+    "LinearOutSlowInEasing (Compose)" to LinearOutSlowInEasing,
+    "FastOutLinearInEasing (Compose)" to FastOutLinearInEasing,
+    "EaseInSine" to EaseInSine,
+    "EaseOutSine" to EaseOutSine,
+    "EaseInOutSine" to EaseInOutSine,
+    "EaseInQuad" to EaseInQuad,
+    "EaseOutQuad" to EaseOutQuad,
+    "EaseInOutQuad" to EaseInOutQuad,
+    "EaseInCubic" to EaseInCubic,
+    "EaseOutCubic" to EaseOutCubic,
+    "EaseInOutCubic" to EaseInOutCubic,
+    "EaseInQuart" to EaseInQuart,
+    "EaseOutQuart" to EaseOutQuart,
+    "EaseInOutQuart" to EaseInOutQuart,
+    "EaseInQuint" to EaseInQuint,
+    "EaseOutQuint" to EaseOutQuint,
+    "EaseInOutQuint" to EaseInOutQuint,
+    "EaseInExpo" to EaseInExpo,
+    "EaseOutExpo" to EaseOutExpo,
+    "EaseInOutExpo" to EaseInOutExpo,
+    "EaseInCirc" to EaseInCirc,
+    "EaseOutCirc" to EaseOutCirc,
+    "EaseInOutCirc" to EaseInOutCirc,
+    "EaseInBack" to EaseInBack,
+    "EaseOutBack" to EaseOutBack,
+    "EaseInOutBack" to EaseInOutBack,
+    "EaseInElastic" to EaseInElastic,
+    "EaseOutElastic" to EaseOutElastic,
+    "EaseInOutElastic" to EaseInOutElastic,
+    "EaseInBounce" to EaseInBounce,
+    "EaseOutBounce" to EaseOutBounce,
+    "EaseInOutBounce" to EaseInOutBounce,
+)
