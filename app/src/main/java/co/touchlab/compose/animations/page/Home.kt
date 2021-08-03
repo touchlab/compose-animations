@@ -38,7 +38,7 @@ fun Home(navController: NavController) {
 }
 
 @Composable
-fun HomeContent(
+private fun HomeContent(
     navController: NavController,
 ) {
     LazyColumn {
@@ -51,7 +51,7 @@ fun HomeContent(
 }
 
 @Composable
-fun DemoLink(
+private fun DemoLink(
     name: String,
     onClick: () -> Unit,
 ) {
@@ -80,5 +80,5 @@ fun DemoLinkPreview() {
 
 private val ALL_DEMOS = listOf(
     "Easing" to EASING_ROUTE,
-    "Value Animator (Old Animation API)" to VALUE_ANIMATOR_ROUTE,
+    "Value Animator (Compat)" to VALUE_ANIMATOR_COMPAT_ROUTE,
 )

@@ -83,7 +83,7 @@ fun EasingDemo(navController: NavController) {
 }
 
 @Composable
-fun EasingDemoContent() {
+private fun EasingDemoContent() {
     LazyColumn {
         items(ALL_EASIGNS.toList()) { (name, easing) ->
             Graph(
@@ -95,7 +95,7 @@ fun EasingDemoContent() {
 }
 
 @Composable
-fun Graph(
+private fun Graph(
     name: String,
     easingFunction: Easing,
 ) {

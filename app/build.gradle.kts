@@ -52,7 +52,7 @@ android {
 dependencies {
     // Libs
     implementation(projects.easing)
-    implementation(projects.valueAnimator)
+    implementation(projects.valueAnimatorCompat)
 
     // External Libs
     implementation(libs.androidx.coreKtx)

@@ -20,7 +20,6 @@ import androidx.compose.material.TopAppBar
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.filled.ArrowBack
 import androidx.compose.runtime.Composable
-import androidx.compose.runtime.DisposableEffect
 import androidx.compose.runtime.LaunchedEffect
 import androidx.compose.runtime.getValue
 import androidx.compose.runtime.mutableStateOf
@@ -44,14 +43,14 @@ import co.touchlab.compose.value.animator.valueAnimatorOfFloatAsState
 import co.touchlab.compose.value.animator.valueAnimatorOfIntAsState
 import kotlinx.coroutines.delay
 
-val VALUE_ANIMATOR_ROUTE = "demo/value-animator"
+val VALUE_ANIMATOR_COMPAT_ROUTE = "demo/value-animator-compat"
 
 @Composable
-fun ValueAnimatorDemo(navController: NavController) {
+fun ValueAnimatorCompatDemo(navController: NavController) {
     Scaffold(
         topBar = {
             TopAppBar(
-                title = { Text("Value Animator") },
+                title = { Text("Value Animator (Compat)") },
                 navigationIcon = {
                     IconButton(onClick = { navController.popBackStack() }) {
                         Icon(Icons.Filled.ArrowBack, null)
@@ -59,11 +58,11 @@ fun ValueAnimatorDemo(navController: NavController) {
                 }
             )
         },
-    ) { ValueAnimatorContent() }
+    ) { ValueAnimatorCompatContent() }
 }
 
 @Composable
-fun ValueAnimatorContent() {
+private fun ValueAnimatorCompatContent() {
     Column(
         modifier = Modifier.fillMaxSize(),
         verticalArrangement = Arrangement.SpaceEvenly,
