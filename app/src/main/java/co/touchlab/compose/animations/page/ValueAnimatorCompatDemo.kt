@@ -35,13 +35,13 @@ import androidx.navigation.NavController
 import co.touchlab.compose.animations.shapes.Ball
 import co.touchlab.compose.animations.shapes.Triangle
 import co.touchlab.compose.animations.utils.size
-import co.touchlab.compose.value.animator.observeAsState
+import co.touchlab.compose.value.animator.compat.observeAsState
 import co.touchlab.compose.value.animator.rememberAnimatorSet
-import co.touchlab.compose.value.animator.rememberArgbValueAnimator
-import co.touchlab.compose.value.animator.rememberIntValueAnimator
-import co.touchlab.compose.value.animator.valueAnimatorOfArgbAsState
-import co.touchlab.compose.value.animator.valueAnimatorOfFloatAsState
-import co.touchlab.compose.value.animator.valueAnimatorOfIntAsState
+import co.touchlab.compose.value.animator.compat.rememberArgbValueAnimator
+import co.touchlab.compose.value.animator.compat.rememberIntValueAnimator
+import co.touchlab.compose.value.animator.compat.valueAnimatorOfArgbAsState
+import co.touchlab.compose.value.animator.compat.valueAnimatorOfFloatAsState
+import co.touchlab.compose.value.animator.compat.valueAnimatorOfIntAsState
 import kotlinx.coroutines.delay
 
 val VALUE_ANIMATOR_COMPAT_ROUTE = "demo/value-animator-compat"

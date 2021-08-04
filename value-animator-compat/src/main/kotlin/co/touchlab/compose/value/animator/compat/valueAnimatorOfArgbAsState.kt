@@ -1,23 +1,24 @@
-package co.touchlab.compose.value.animator
+package co.touchlab.compose.value.animator.compat
 
 import android.animation.ValueAnimator
-import androidx.compose.runtime.*
+import androidx.compose.runtime.Composable
+import androidx.compose.runtime.State
+import androidx.compose.runtime.remember
 
 @Composable
-fun rememberFloatValueAnimator(
-    vararg values: Float,
+fun rememberArgbValueAnimator(
+    vararg values: Int,
     setupAnimator: ValueAnimator.() -> Unit = {},
 ): ValueAnimator = remember(keys = values.toTypedArray()) {
-    ValueAnimator.ofFloat(*values).apply(setupAnimator)
+    ValueAnimator.ofArgb(*values).apply(setupAnimator)
 }
 
-
 @Composable
-fun valueAnimatorOfFloatAsState(
-    vararg values: Float,
+fun valueAnimatorOfArgbAsState(
+    vararg values: Int,
     setupAnimator: ValueAnimator.() -> Unit = {},
-): State<Float> {
-    val animator = rememberFloatValueAnimator(
+): State<Int> {
+    val animator = rememberArgbValueAnimator(
         values = values,
         setupAnimator = setupAnimator
     )

@@ -1,4 +1,4 @@
-package co.touchlab.compose.value.animator
+package co.touchlab.compose.value.animator.compat
 
 import android.animation.ValueAnimator
 import androidx.compose.runtime.Composable
@@ -6,19 +6,20 @@ import androidx.compose.runtime.State
 import androidx.compose.runtime.remember
 
 @Composable
-fun rememberIntValueAnimator(
-    vararg values: Int,
+fun rememberFloatValueAnimator(
+    vararg values: Float,
     setupAnimator: ValueAnimator.() -> Unit = {},
 ): ValueAnimator = remember(keys = values.toTypedArray()) {
-    ValueAnimator.ofInt(*values).apply(setupAnimator)
+    ValueAnimator.ofFloat(*values).apply(setupAnimator)
 }
 
+
 @Composable
-fun valueAnimatorOfIntAsState(
-    vararg values: Int,
+fun valueAnimatorOfFloatAsState(
+    vararg values: Float,
     setupAnimator: ValueAnimator.() -> Unit = {},
-): State<Int> {
-    val animator = rememberIntValueAnimator(
+): State<Float> {
+    val animator = rememberFloatValueAnimator(
         values = values,
         setupAnimator = setupAnimator
     )

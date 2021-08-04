@@ -1,4 +1,4 @@
-package co.touchlab.compose.value.animator
+package co.touchlab.compose.value.animator.compat
 
 import android.animation.Animator
 import android.animation.AnimatorSet
