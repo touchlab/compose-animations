@@ -1,5 +1,6 @@
 package co.touchlab.compose.animations.page
 
+import android.util.Log
 import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Row
@@ -14,6 +15,7 @@ import androidx.compose.material.TopAppBar
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.tooling.preview.Preview
@@ -24,8 +26,12 @@ import co.touchlab.compose.animations.R
 
 val HOME_ROUTE = "demo/home"
 
+private const val TAG = "Home"
 @Composable
 fun Home(navController: NavController) {
+    Log.d(TAG, "Color: ${Color.Red}")
+    Log.d(TAG, "Color: ${Color.Green}")
+    Log.d(TAG, "Color: ${Color.Blue}")
     Scaffold(
         topBar = {
             TopAppBar(
@@ -81,4 +87,5 @@ fun DemoLinkPreview() {
 private val ALL_DEMOS = listOf(
     "Easing" to EASING_ROUTE,
     "Value Animator (Compat)" to VALUE_ANIMATOR_COMPAT_ROUTE,
+    "Value Animator" to VALUE_ANIMATOR_ROUTE,
 )

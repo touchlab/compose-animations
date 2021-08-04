@@ -12,8 +12,8 @@
             <option value="$PROJECT_DIR$" />
             <option value="$PROJECT_DIR$/app" />
             <option value="$PROJECT_DIR$/easing" />
+            <option value="$PROJECT_DIR$/value-animator" />
             <option value="$PROJECT_DIR$/value-animator-compat" />
-            <option value="$PROJECT_DIR$/values" />
           </set>
         </option>
         <option name="resolveModulePerSourceSet" value="false" />

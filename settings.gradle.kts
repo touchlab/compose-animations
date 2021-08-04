@@ -16,4 +16,4 @@ rootProject.name = "ComposeAnimations"
 include(":app")
 include(":easing")
 include(":value-animator-compat")
-include(":values")
+include(":value-animator")

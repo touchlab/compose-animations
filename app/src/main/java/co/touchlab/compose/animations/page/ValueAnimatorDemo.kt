@@ -1,8 +1,9 @@
 package co.touchlab.compose.animations.page
 
-import android.animation.ValueAnimator
-import android.graphics.Color
-import android.view.animation.LinearInterpolator
+import androidx.compose.animation.core.LinearEasing
+import androidx.compose.animation.core.RepeatMode
+import androidx.compose.animation.core.infiniteRepeatable
+import androidx.compose.animation.core.tween
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Row
@@ -27,6 +28,7 @@ import androidx.compose.runtime.remember
 import androidx.compose.runtime.setValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.graphics.graphicsLayer
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.unit.dp
@@ -35,23 +37,19 @@ import androidx.navigation.NavController
 import co.touchlab.compose.animations.shapes.Ball
 import co.touchlab.compose.animations.shapes.Triangle
 import co.touchlab.compose.animations.utils.size
-import co.touchlab.compose.value.animator.observeAsState
-import co.touchlab.compose.value.animator.rememberAnimatorSet
-import co.touchlab.compose.value.animator.rememberArgbValueAnimator
-import co.touchlab.compose.value.animator.rememberIntValueAnimator
-import co.touchlab.compose.value.animator.valueAnimatorOfArgbAsState
-import co.touchlab.compose.value.animator.valueAnimatorOfFloatAsState
-import co.touchlab.compose.value.animator.valueAnimatorOfIntAsState
+import co.touchlab.compose.value.animator.animateColorValuesAsState
+import co.touchlab.compose.value.animator.animateFloatValuesAsState
+import co.touchlab.compose.value.animator.animateIntValuesAsState
 import kotlinx.coroutines.delay
 
-val VALUE_ANIMATOR_COMPAT_ROUTE = "demo/value-animator-compat"
+val VALUE_ANIMATOR_ROUTE = "demo/value-animator"
 
 @Composable
-fun ValueAnimatorCompatDemo(navController: NavController) {
+fun ValueAnimatorDemo(navController: NavController) {
     Scaffold(
         topBar = {
             TopAppBar(
-                title = { Text("Value Animator (Compat)") },
+                title = { Text("Value Animator") },
                 navigationIcon = {
                     IconButton(onClick = { navController.popBackStack() }) {
                         Icon(Icons.Filled.ArrowBack, null)
@@ -59,11 +57,11 @@ fun ValueAnimatorCompatDemo(navController: NavController) {
                 }
             )
         },
-    ) { ValueAnimatorCompatContent() }
+    ) { ValueAnimatorContent() }
 }
 
 @Composable
-private fun ValueAnimatorCompatContent() {
+private fun ValueAnimatorContent() {
     Column(
         modifier = Modifier.fillMaxSize(),
         verticalArrangement = Arrangement.SpaceEvenly,
@@ -73,42 +71,53 @@ private fun ValueAnimatorCompatContent() {
             modifier = Modifier.fillMaxWidth(),
             horizontalArrangement = Arrangement.SpaceEvenly,
         ) {
+            BouncingDots()
             BouncingDotsCompat()
+        }
+        Row(
+            modifier = Modifier.fillMaxWidth(),
+            horizontalArrangement = Arrangement.SpaceEvenly,
+        ) {
+            LoadingButton()
             LoadingButtonCompat()
         }
         Row(
             modifier = Modifier.fillMaxWidth(),
             horizontalArrangement = Arrangement.SpaceEvenly,
         ) {
+            SpinningTriangle()
             SpinningTriangleCompat()
-            ColorFadingTriangleCompat()
         }
         Row(
             modifier = Modifier.fillMaxWidth(),
             horizontalArrangement = Arrangement.SpaceEvenly,
         ) {
-            SpinningTriangleAnimatorSetCompat()
+            ColorFadingTriangle()
+            ColorFadingTriangleCompat()
         }
     }
 }
 
 @Composable
-fun BouncingDotsCompat() {
+private fun BouncingDots() {
     // Based on https://github.com/81813780/AVLoadingIndicatorView/blob/master/library/src/main/java/com/wang/avi/indicators/BallPulseSyncIndicator.java
-
     val ballsRange = (0..2)
     val ballSize = 12.dp
     val animators = ballsRange.map { index ->
-        valueAnimatorOfFloatAsState(0f, ballSize.value, 0f) {
-            duration = 200 * ballsRange.size.toLong()
-            repeatCount = ValueAnimator.INFINITE
-            startDelay = (1 + index) * 70L
-        }
+        animateFloatValuesAsState(
+            values = floatArrayOf(0f, ballSize.value, 0f),
+            delay = (1 + index) * 70L,
+            animationSpec = infiniteRepeatable(
+                animation = tween(
+                    durationMillis = 200 * ballsRange.size,
+                ),
+            )
+        )
     }
 
     Column(horizontalAlignment = Alignment.CenterHorizontally) {
         Text(
-            text = "Float Animator (Compat)",
+            text = "Float Animator",
             fontSize = 16.sp,
             fontWeight = FontWeight.Bold
         )
@@ -129,7 +138,7 @@ fun BouncingDotsCompat() {
 }
 
 @Composable
-fun LoadingButtonCompat() {
+private fun LoadingButton() {
     var isLoading by remember { mutableStateOf(false) }
     if (isLoading) {
         LaunchedEffect(key1 = isLoading) {
@@ -137,10 +146,9 @@ fun LoadingButtonCompat() {
             isLoading = false
         }
     }
-    
     Column(horizontalAlignment = Alignment.CenterHorizontally) {
         Text(
-            text = "Trigger animation (Compat)",
+            text = "Trigger animation",
             fontSize = 16.sp,
             fontWeight = FontWeight.Bold
         )
@@ -151,11 +159,15 @@ fun LoadingButtonCompat() {
             onClick = { if (!isLoading) isLoading = true },
         ) {
             if (isLoading) {
-                val ballOffset by valueAnimatorOfFloatAsState(-35f, 35f) {
-                    repeatMode = ValueAnimator.REVERSE
-                    repeatCount = ValueAnimator.INFINITE
-                    duration = 175
-                }
+                val ballOffset by animateFloatValuesAsState(
+                    values = floatArrayOf(-35f, 35f),
+                    animationSpec = infiniteRepeatable(
+                        animation = tween(
+                            durationMillis = 175,
+                        ),
+                        repeatMode = RepeatMode.Reverse,
+                    )
+                )
 
                 Ball(
                     modifier = Modifier.offset(x = ballOffset.dp)
@@ -168,22 +180,30 @@ fun LoadingButtonCompat() {
 }
 
 @Composable
-fun SpinningTriangleCompat() {
-    val rotateXAnimation by valueAnimatorOfIntAsState(0, 180, 180, 0, 0) {
-        interpolator = LinearInterpolator()
-        repeatCount = ValueAnimator.INFINITE
-        duration = 2500
-    }
+fun SpinningTriangle() {
+    val rotateXAnimation by animateIntValuesAsState(
+        values = arrayOf(0, 180, 180, 0, 0),
+        animationSpec = infiniteRepeatable(
+            animation = tween(
+                durationMillis = 2500,
+                easing = LinearEasing
+            ),
+        )
+    )
 
-    val rotateYAnimation by valueAnimatorOfIntAsState(0, 0, 180, 180, 0) {
-        interpolator = LinearInterpolator()
-        repeatCount = ValueAnimator.INFINITE
-        duration = 2500
-    }
+    val rotateYAnimation by animateIntValuesAsState(
+        values = arrayOf(0, 0, 180, 180, 0),
+        animationSpec = infiniteRepeatable(
+            animation = tween(
+                durationMillis = 2500,
+                easing = LinearEasing
+            ),
+        )
+    )
 
     Column(horizontalAlignment = Alignment.CenterHorizontally) {
         Text(
-            text = "Int animator (Compat)",
+            text = "Int animator",
             fontSize = 16.sp,
             fontWeight = FontWeight.Bold
         )
@@ -199,70 +219,27 @@ fun SpinningTriangleCompat() {
 }
 
 @Composable
-fun ColorFadingTriangleCompat() {
-    val colorAnimation by valueAnimatorOfArgbAsState(Color.RED, Color.GREEN, Color.BLUE) {
-        interpolator = LinearInterpolator()
-        repeatCount = ValueAnimator.INFINITE
-        repeatMode = ValueAnimator.REVERSE
-        duration = 2500
-    }
+fun ColorFadingTriangle() {
+    val colorAnimation by animateColorValuesAsState(
+        values = arrayOf(Color.Red, Color.Green, Color.Blue),
+        animationSpec = infiniteRepeatable(
+            animation = tween(
+                durationMillis = 2500,
+                easing = LinearEasing,
+            ),
+            repeatMode = RepeatMode.Reverse,
+        ),
+    )
 
     Column(horizontalAlignment = Alignment.CenterHorizontally) {
         Text(
-            text = "ARGB animator (Compat)",
+            text = "ARGB animator",
             fontSize = 16.sp,
             fontWeight = FontWeight.Bold
         )
         Triangle(
             modifier = Modifier.padding(top = 8.dp),
-            backgroundColor = androidx.compose.ui.graphics.Color(colorAnimation)
+            backgroundColor = colorAnimation
         )
-    }
-}
-
-@Composable
-fun SpinningTriangleAnimatorSetCompat() {
-    val colorAnimator = rememberArgbValueAnimator(Color.RED, Color.GREEN, Color.BLUE, Color.GREEN, Color.RED) {
-        repeatCount = ValueAnimator.INFINITE
-    }
-    val rotationXAnimator = rememberIntValueAnimator(0, 180, 180, 0, 0) {
-        repeatCount = ValueAnimator.INFINITE
-    }
-    val rotationYAnimator = rememberIntValueAnimator(0, 0, 180, 180, 0) {
-        repeatCount = ValueAnimator.INFINITE
-    }
-
-    val animatorSet = rememberAnimatorSet {
-        play(rotationXAnimator)
-            .with(rotationYAnimator)
-            .with(colorAnimator)
-        duration = 1500
-    }
-
-    val rotationX by rotationXAnimator.observeAsState(0)
-    val rotationY by rotationYAnimator.observeAsState(0)
-    val color by colorAnimator.observeAsState(Color.RED)
-
-    Column(horizontalAlignment = Alignment.CenterHorizontally) {
-        Text(
-            text = "Animator Set (Compat)",
-            fontSize = 16.sp,
-            fontWeight = FontWeight.Bold
-        )
-        Triangle(
-            modifier = Modifier
-                .padding(top = 8.dp)
-                .graphicsLayer(
-                    rotationX = rotationX.toFloat(),
-                    rotationY = rotationY.toFloat(),
-                ),
-            backgroundColor = androidx.compose.ui.graphics.Color(color)
-        )
-        Button(
-            modifier = Modifier.padding(top = 8.dp),
-            onClick = { animatorSet.toggle() },
-        ) {
-            Text(text = if (animatorSet.isAnimating) "Stop" else "Play")
-        }
     }
 }
