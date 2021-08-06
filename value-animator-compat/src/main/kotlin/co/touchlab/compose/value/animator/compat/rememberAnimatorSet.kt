@@ -40,13 +40,15 @@ fun rememberAnimatorSet(
         onDispose { animatorSet.cancel() }
     }
 
-    return ComposableAnimatorSet(
-        animatorSet = animatorSet,
-        isAnimating = playing,
-        play = { if (!playing) playing = true },
-        stop = { if (playing) playing = false },
-        toggle = { playing = !playing }
-    )
+    return remember(key1 = animatorSet, key2 = playing) {
+        ComposableAnimatorSet(
+            animatorSet = animatorSet,
+            isAnimating = playing,
+            play = { if (!playing) playing = true },
+            stop = { if (playing) playing = false },
+            toggle = { playing = !playing }
+        )
+    }
 }
 
 private fun AnimatorSet.addOnAnimationStop(block: () -> Unit) {

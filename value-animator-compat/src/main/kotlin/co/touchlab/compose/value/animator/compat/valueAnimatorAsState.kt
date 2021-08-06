@@ -9,11 +9,19 @@ import androidx.compose.runtime.produceState
 import androidx.compose.runtime.remember
 
 @Composable
-inline fun <reified T> ValueAnimator.observeAsState(
-    initialValue: T,
-): State<T> = produceState(initialValue = initialValue) {
+fun ValueAnimator.observeAsState(
+    initialValue: Int,
+): State<Int> = produceState(initialValue = initialValue) {
     removeAllUpdateListeners()
-    addUpdateListener { value = it.animatedValue as T }
+    addUpdateListener { value = it.animatedValue as Int }
+}
+
+@Composable
+fun ValueAnimator.observeAsState(
+    initialValue: Float,
+): State<Float> = produceState(initialValue = initialValue) {
+    removeAllUpdateListeners()
+    addUpdateListener { value = it.animatedValue as Float }
 }
 
 @Composable

@@ -106,7 +106,7 @@ private fun BouncingDots() {
     val animators = ballsRange.map { index ->
         animateFloatValuesAsState(
             values = floatArrayOf(0f, ballSize.value, 0f),
-            delay = (1 + index) * 70L,
+            startDelay = (1 + index) * 70L,
             animationSpec = infiniteRepeatable(
                 animation = tween(
                     durationMillis = 200 * ballsRange.size,

@@ -23,116 +23,116 @@ import kotlinx.coroutines.delay
 @Composable
 fun animateFloatValuesAsState(
     vararg values: Float,
-    delay: Long = 0,
+    startDelay: Long = 0,
     animationSpec: AnimationSpec<Float> = spring(),
 ): State<Float> = animateValuesAsState(
     values = values.toTypedArray(),
-    getValueAtFrame = ValueAtFrame.Float,
-    delay = delay,
+    getValueAtFraction = ValueAtFraction.Float,
+    startDelay = startDelay,
     animationSpec = animationSpec,
 )
 
 @Composable
 fun animateIntValuesAsState(
     values: Array<Int>,
-    delay: Long = 0,
+    startDelay: Long = 0,
     animationSpec: AnimationSpec<Float> = spring(),
 ): State<Int> = animateValuesAsState(
     values = values,
-    getValueAtFrame = ValueAtFrame.Int,
-    delay = delay,
+    getValueAtFraction = ValueAtFraction.Int,
+    startDelay = startDelay,
     animationSpec = animationSpec,
 )
 
 @Composable
 fun animateDpValuesAsState(
     values: Array<Dp>,
-    delay: Long = 0,
+    startDelay: Long = 0,
     animationSpec: AnimationSpec<Float> = spring(),
 ): State<Dp> = animateValuesAsState(
     values = values,
-    getValueAtFrame = ValueAtFrame.Dp,
-    delay = delay,
+    getValueAtFraction = ValueAtFraction.Dp,
+    startDelay = startDelay,
     animationSpec = animationSpec,
 )
 
 @Composable
 fun animateSizeValuesAsState(
     values: Array<Size>,
-    delay: Long = 0,
+    startDelay: Long = 0,
     animationSpec: AnimationSpec<Float> = spring(),
 ): State<Size> = animateValuesAsState(
     values = values,
-    getValueAtFrame = ValueAtFrame.Size,
-    delay = delay,
+    getValueAtFraction = ValueAtFraction.Size,
+    startDelay = startDelay,
     animationSpec = animationSpec,
 )
 
 @Composable
 fun animateOffsetValuesAsState(
     values: Array<Offset>,
-    delay: Long = 0,
+    startDelay: Long = 0,
     animationSpec: AnimationSpec<Float> = spring(),
 ): State<Offset> = animateValuesAsState(
     values = values,
-    getValueAtFrame = ValueAtFrame.Offset,
-    delay = delay,
+    getValueAtFraction = ValueAtFraction.Offset,
+    startDelay = startDelay,
     animationSpec = animationSpec,
 )
 
 @Composable
 fun animateRectValuesAsState(
     values: Array<Rect>,
-    delay: Long = 0,
+    startDelay: Long = 0,
     animationSpec: AnimationSpec<Float> = spring(),
 ): State<Rect> = animateValuesAsState(
     values = values,
-    getValueAtFrame = ValueAtFrame.Rect,
-    delay = delay,
+    getValueAtFraction = ValueAtFraction.Rect,
+    startDelay = startDelay,
     animationSpec = animationSpec,
 )
 
 @Composable
 fun animateIntOffsetValuesAsState(
     values: Array<IntOffset>,
-    delay: Long = 0,
+    startDelay: Long = 0,
     animationSpec: AnimationSpec<Float> = spring(),
 ): State<IntOffset> = animateValuesAsState(
     values = values,
-    getValueAtFrame = ValueAtFrame.IntOffset,
-    delay = delay,
+    getValueAtFraction = ValueAtFraction.IntOffset,
+    startDelay = startDelay,
     animationSpec = animationSpec,
 )
 
 @Composable
 fun animateIntSizeValuesAsState(
     values: Array<IntSize>,
-    delay: Long = 0,
+    startDelay: Long = 0,
     animationSpec: AnimationSpec<Float> = spring(),
 ): State<IntSize> = animateValuesAsState(
     values = values,
-    getValueAtFrame = ValueAtFrame.IntSize,
-    delay = delay,
+    getValueAtFraction = ValueAtFraction.IntSize,
+    startDelay = startDelay,
     animationSpec = animationSpec,
 )
 
 @Composable
 fun animateColorValuesAsState(
     values: Array<Color>,
-    delay: Long = 0,
+    startDelay: Long = 0,
     animationSpec: AnimationSpec<Float> = spring(),
 ): State<Color> = animateValuesAsState(
     values = values,
-    getValueAtFrame = ValueAtFrame.Color,
-    delay = delay,
+    getValueAtFraction = ValueAtFraction.Color,
+    startDelay = startDelay,
     animationSpec = animationSpec,
 )
 
 @Composable
 fun <T> animateValuesAsState(
     vararg values: T,
-    getValueAtFrame: ValueAtFrame<T>,
-    delay: Long = 0,
+    getValueAtFraction: ValueAtFraction<T>,
+    startDelay: Long = 0,
     animationSpec: AnimationSpec<Float> = spring(),
 ): State<T> {
     val animationPairs by rememberUpdatedState(values.toList().zipWithNext())
@@ -140,8 +140,8 @@ fun <T> animateValuesAsState(
     val currentValue = remember(animationPairs) { mutableStateOf(animationPairs.first().first) }
 
     LaunchedEffect(keys = animationPairs.toTypedArray()) {
-        if (delay > 0) {
-            delay(delay)
+        if (startDelay > 0) {
+            delay(startDelay)
         }
 
         val (_, setValue) = currentValue
@@ -158,7 +158,7 @@ fun <T> animateValuesAsState(
                     val decimalPart = frame - integerPart
                     val (initialValue, finalValue) = animationPairs[frame.toInt()]
                     setValue(
-                        getValueAtFrame(decimalPart, initialValue, finalValue)
+                        getValueAtFraction(decimalPart, initialValue, finalValue)
                     )
                 }
             }

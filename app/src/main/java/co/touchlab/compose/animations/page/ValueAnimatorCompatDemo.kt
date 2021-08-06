@@ -36,7 +36,7 @@ import co.touchlab.compose.animations.shapes.Ball
 import co.touchlab.compose.animations.shapes.Triangle
 import co.touchlab.compose.animations.utils.size
 import co.touchlab.compose.value.animator.compat.observeAsState
-import co.touchlab.compose.value.animator.rememberAnimatorSet
+import co.touchlab.compose.value.animator.compat.rememberAnimatorSet
 import co.touchlab.compose.value.animator.compat.rememberArgbValueAnimator
 import co.touchlab.compose.value.animator.compat.rememberIntValueAnimator
 import co.touchlab.compose.value.animator.compat.valueAnimatorOfArgbAsState
@@ -234,8 +234,8 @@ fun SpinningTriangleAnimatorSetCompat() {
 
     val animatorSet = rememberAnimatorSet {
         play(rotationXAnimator)
-            .with(rotationYAnimator)
-            .with(colorAnimator)
+            .before(rotationYAnimator)
+            .before(colorAnimator)
         duration = 1500
     }
 
@@ -253,6 +253,7 @@ fun SpinningTriangleAnimatorSetCompat() {
             modifier = Modifier
                 .padding(top = 8.dp)
                 .graphicsLayer(
+
                     rotationX = rotationX.toFloat(),
                     rotationY = rotationY.toFloat(),
                 ),
