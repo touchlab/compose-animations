@@ -134,6 +134,10 @@ fun <T> animateValuesAsState(
     startDelay: Long = 0,
     animationSpec: AnimationSpec<Float> = spring(),
 ): State<T> {
+    require(values.isNotEmpty()) {
+        "You should provide at least one item to animate"
+    }
+
     val valueAnimator by rememberUpdatedState(
         MultipleValuesAnimator(values.toList())
     )

@@ -12,6 +12,7 @@ internal data class MultipleValuesAnimator<T>(
     val targetFrameValue: Float = groups.size.toFloat()
 
     fun animate(frame: Float, valueAtFraction: ValueAtFraction<T>): T = when {
+        groups.isEmpty() -> initialAnimationValue
         frame <= initialFrameValue -> initialAnimationValue
         frame >= targetFrameValue -> targetAnimationValue
         else -> {
