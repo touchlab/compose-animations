@@ -6,7 +6,6 @@ import androidx.compose.animation.core.spring
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.LaunchedEffect
 import androidx.compose.runtime.State
-import androidx.compose.runtime.derivedStateOf
 import androidx.compose.runtime.getValue
 import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
@@ -135,35 +134,26 @@ fun <T> animateValuesAsState(
     startDelay: Long = 0,
     animationSpec: AnimationSpec<Float> = spring(),
 ): State<T> {
-    val animationPairs by rememberUpdatedState(values.toList().zipWithNext())
-    val maxValue by remember(animationPairs) { derivedStateOf { animationPairs.size.toFloat() } }
-    val currentValue = remember(animationPairs) { mutableStateOf(animationPairs.first().first) }
+    val valueAnimator by rememberUpdatedState(
+        MultipleValuesAnimator(values.toList())
+    )
 
-    LaunchedEffect(keys = animationPairs.toTypedArray()) {
+    val animatedValue = remember(valueAnimator) {
+        mutableStateOf(valueAnimator.initialAnimationValue)
+    }
+
+    LaunchedEffect(valueAnimator) {
         if (startDelay > 0) {
             delay(startDelay)
         }
 
-        val (_, setValue) = currentValue
+        val (_, setValue) = animatedValue
         animate(
-            initialValue = 0f,
-            targetValue = maxValue,
+            initialValue = valueAnimator.initialFrameValue,
+            targetValue = valueAnimator.targetFrameValue,
             animationSpec = animationSpec,
-        ) { frame, _ ->
-            when {
-                frame >= maxValue -> setValue(animationPairs.last().second)
-                frame <= 0f -> setValue(animationPairs.first().first)
-                else -> {
-                    val integerPart = frame.toInt()
-                    val decimalPart = frame - integerPart
-                    val (initialValue, finalValue) = animationPairs[frame.toInt()]
-                    setValue(
-                        getValueAtFraction(decimalPart, initialValue, finalValue)
-                    )
-                }
-            }
-        }
+        ) { frame, _ -> setValue(valueAnimator.animate(frame, getValueAtFraction)) }
     }
 
-    return currentValue
+    return animatedValue
 }
