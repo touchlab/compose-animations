@@ -1,14 +1,15 @@
 plugins {
-    id("com.android.library")
+    alias(libs.plugins.androidLibrary)
     kotlin("android")
 }
 
 android {
-    compileSdk = 30
+    namespace = "co.touchlab.compose.easing"
+    compileSdk = libs.versions.android.compileSdk.get().toInt()
 
     defaultConfig {
-        minSdk = 21
-        targetSdk = 30
+        minSdk = libs.versions.android.minSdk.get().toInt()
+        targetSdk = libs.versions.android.targetSdk.get().toInt()
 
         testInstrumentationRunner = "androidx.test.runner.AndroidJUnitRunner"
         proguardFile("consumer-rules.pro")
@@ -34,7 +35,7 @@ android {
     }
 
     composeOptions {
-        kotlinCompilerExtensionVersion = libs.versions.compose.get()
+        kotlinCompilerExtensionVersion = libs.versions.composeCompiler.get()
     }
 }
 

@@ -1,8 +1,13 @@
-// https://docs.gradle.org/current/userguide/platforms.html
-enableFeaturePreview("VERSION_CATALOGS")
-
 // https://docs.gradle.org/current/userguide/declaring_dependencies.html
 enableFeaturePreview("TYPESAFE_PROJECT_ACCESSORS")
+
+pluginManagement {
+    repositories {
+        google()
+        gradlePluginPortal()
+        mavenCentral()
+    }
+}
 
 dependencyResolutionManagement {
     repositories {
@@ -10,6 +15,7 @@ dependencyResolutionManagement {
         mavenCentral()
     }
 }
+
 rootProject.name = "ComposeAnimations"
 
 // Modules

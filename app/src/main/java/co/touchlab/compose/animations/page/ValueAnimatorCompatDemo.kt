@@ -4,6 +4,7 @@ import android.animation.ValueAnimator
 import android.graphics.Color
 import android.view.animation.LinearInterpolator
 import androidx.compose.foundation.layout.Arrangement
+import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.fillMaxSize
@@ -59,7 +60,11 @@ fun ValueAnimatorCompatDemo(navController: NavController) {
                 }
             )
         },
-    ) { ValueAnimatorCompatContent() }
+    ) {
+        Box(modifier = Modifier.padding(it)) {
+            ValueAnimatorCompatContent()
+        }
+    }
 }
 
 @Composable
@@ -137,7 +142,7 @@ fun LoadingButtonCompat() {
             isLoading = false
         }
     }
-    
+
     Column(horizontalAlignment = Alignment.CenterHorizontally) {
         Text(
             text = "Trigger animation (Compat)",

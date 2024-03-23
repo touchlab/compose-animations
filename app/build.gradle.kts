@@ -1,15 +1,15 @@
 plugins {
-    id("com.android.application")
+    alias(libs.plugins.androidApplication)
     kotlin("android")
 }
 
 android {
-    compileSdk = 30
+    namespace = "co.touchlab.compose.animations"
+    compileSdk = libs.versions.android.compileSdk.get().toInt()
 
     defaultConfig {
-        applicationId = "co.touchlab.compose.animations"
-        minSdk = 21
-        targetSdk = 30
+        minSdk = libs.versions.android.minSdk.get().toInt()
+        targetSdk = libs.versions.android.targetSdk.get().toInt()
         versionCode = 1
         versionName = "1.0"
 
@@ -39,10 +39,10 @@ android {
     }
 
     composeOptions {
-        kotlinCompilerExtensionVersion = libs.versions.compose.get()
+        kotlinCompilerExtensionVersion = libs.versions.composeCompiler.get()
     }
 
-    packagingOptions {
+    packaging {
         resources {
             excludes += "/META-INF/{AL2.0,LGPL2.1}"
         }

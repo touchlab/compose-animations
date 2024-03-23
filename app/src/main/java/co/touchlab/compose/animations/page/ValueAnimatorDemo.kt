@@ -5,6 +5,7 @@ import androidx.compose.animation.core.RepeatMode
 import androidx.compose.animation.core.infiniteRepeatable
 import androidx.compose.animation.core.tween
 import androidx.compose.foundation.layout.Arrangement
+import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.fillMaxSize
@@ -57,7 +58,11 @@ fun ValueAnimatorDemo(navController: NavController) {
                 }
             )
         },
-    ) { ValueAnimatorContent() }
+    ) {
+        Box(modifier = Modifier.padding(it)) {
+            ValueAnimatorContent()
+        }
+    }
 }
 
 @Composable

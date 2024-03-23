@@ -10,6 +10,7 @@ import androidx.compose.animation.core.infiniteRepeatable
 import androidx.compose.animation.core.rememberInfiniteTransition
 import androidx.compose.animation.core.tween
 import androidx.compose.foundation.Canvas
+import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.height
@@ -79,7 +80,11 @@ fun EasingDemo(navController: NavController) {
                 }
             )
         },
-    ) { EasingDemoContent() }
+    ) {
+        Box(modifier = Modifier.padding(it)) {
+            EasingDemoContent()
+        }
+    }
 }
 
 @Composable
