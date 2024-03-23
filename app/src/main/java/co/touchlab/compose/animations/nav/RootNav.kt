@@ -8,9 +8,7 @@ import co.touchlab.compose.animations.page.EASING_ROUTE
 import co.touchlab.compose.animations.page.EasingDemo
 import co.touchlab.compose.animations.page.HOME_ROUTE
 import co.touchlab.compose.animations.page.Home
-import co.touchlab.compose.animations.page.VALUE_ANIMATOR_COMPAT_ROUTE
 import co.touchlab.compose.animations.page.VALUE_ANIMATOR_ROUTE
-import co.touchlab.compose.animations.page.ValueAnimatorCompatDemo
 import co.touchlab.compose.animations.page.ValueAnimatorDemo
 
 @Composable
@@ -23,6 +21,5 @@ fun RootNav() {
         composable(HOME_ROUTE) { Home(navController) }
         composable(EASING_ROUTE) { EasingDemo(navController) }
         composable(VALUE_ANIMATOR_ROUTE) { ValueAnimatorDemo(navController) }
-        composable(VALUE_ANIMATOR_COMPAT_ROUTE) { ValueAnimatorCompatDemo(navController) }
     }
 }

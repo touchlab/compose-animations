@@ -76,29 +76,15 @@ private fun ValueAnimatorContent() {
             modifier = Modifier.fillMaxWidth(),
             horizontalArrangement = Arrangement.SpaceEvenly,
         ) {
-            BouncingDots()
-            BouncingDotsCompat()
-        }
-        Row(
-            modifier = Modifier.fillMaxWidth(),
-            horizontalArrangement = Arrangement.SpaceEvenly,
-        ) {
-            LoadingButton()
-            LoadingButtonCompat()
-        }
-        Row(
-            modifier = Modifier.fillMaxWidth(),
-            horizontalArrangement = Arrangement.SpaceEvenly,
-        ) {
             SpinningTriangle()
-            SpinningTriangleCompat()
+            ColorFadingTriangle()
         }
         Row(
             modifier = Modifier.fillMaxWidth(),
             horizontalArrangement = Arrangement.SpaceEvenly,
         ) {
-            ColorFadingTriangle()
-            ColorFadingTriangleCompat()
+            BouncingDots()
+            LoadingButton()
         }
     }
 }

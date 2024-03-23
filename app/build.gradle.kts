@@ -52,7 +52,6 @@ android {
 dependencies {
     // Libs
     implementation(projects.easing)
-    implementation(projects.valueAnimatorCompat)
     implementation(projects.valueAnimator)
 
     // External Libs
