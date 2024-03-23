@@ -1,6 +1,16 @@
 plugins {
     alias(libs.plugins.androidLibrary)
-    kotlin("android")
+    alias(libs.plugins.kotlinMultiplatform)
+}
+
+kotlin {
+    androidTarget {
+        compilations.all {
+            kotlinOptions {
+                jvmTarget = "1.8"
+            }
+        }
+    }
 }
 
 android {
@@ -24,10 +34,6 @@ android {
     compileOptions {
         sourceCompatibility = JavaVersion.VERSION_1_8
         targetCompatibility = JavaVersion.VERSION_1_8
-    }
-
-    kotlinOptions {
-        jvmTarget = "1.8"
     }
 
     buildFeatures {
