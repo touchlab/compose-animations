@@ -3,6 +3,7 @@ package co.touchlab.compose.value.animator
 import androidx.compose.animation.core.AnimationSpec
 import androidx.compose.animation.core.spring
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.State
 import androidx.compose.ui.geometry.Offset
 import androidx.compose.ui.geometry.Rect
 import androidx.compose.ui.geometry.Size
@@ -117,4 +118,18 @@ fun animateColorAsState(
     values = arrayOf(initialValue, targetValue),
     startDelay = startDelay,
     animationSpec = animationSpec
+)
+
+@Composable
+inline fun <reified T> animateAsState(
+    initialValue: T,
+    targetValue: T,
+    getValueAtFraction: ValueAtFraction<T>,
+    startDelay: Long = 0,
+    animationSpec: AnimationSpec<Float> = spring(),
+): State<T> = animateValuesAsState(
+    values = arrayOf(initialValue, targetValue),
+    getValueAtFraction = getValueAtFraction,
+    startDelay = startDelay,
+    animationSpec = animationSpec,
 )

@@ -18,7 +18,17 @@ import kotlin.math.pow
  * between initialValue and finalValue
  */
 fun interface ValueAtFraction<T> {
-    companion object {}
+    companion object {
+        val Float: ValueAtFraction<Float> get() = floatAtFraction
+        val Int: ValueAtFraction<Int> get() = intAtFraction
+        val Dp: ValueAtFraction<Dp> get() = dpAtFraction
+        val Size: ValueAtFraction<Size> get() = sizeAtFraction
+        val Offset: ValueAtFraction<Offset> get() = offsetAtFraction
+        val Rect: ValueAtFraction<Rect> get() = rectAtFraction
+        val IntOffset: ValueAtFraction<IntOffset> get() = intOffsetAtFraction
+        val IntSize: ValueAtFraction<IntSize> get() = intSizeAtFraction
+        val Color: ValueAtFraction<Color> get() = colorAtFraction
+    }
 
     /**
      * @param fraction Float representing an animation progress. Always between 0f and 1f
@@ -31,33 +41,6 @@ fun interface ValueAtFraction<T> {
         finalValue: T,
     ): T
 }
-
-val ValueAtFraction.Companion.Float: ValueAtFraction<Float>
-    get() = floatAtFraction
-
-val ValueAtFraction.Companion.Int: ValueAtFraction<Int>
-    get() = intAtFraction
-
-val ValueAtFraction.Companion.Dp: ValueAtFraction<Dp>
-    get() = dpAtFraction
-
-val ValueAtFraction.Companion.Size: ValueAtFraction<Size>
-    get() = sizeAtFraction
-
-val ValueAtFraction.Companion.Offset: ValueAtFraction<Offset>
-    get() = offsetAtFraction
-
-val ValueAtFraction.Companion.Rect: ValueAtFraction<Rect>
-    get() = rectAtFraction
-
-val ValueAtFraction.Companion.IntOffset: ValueAtFraction<IntOffset>
-    get() = intOffsetAtFraction
-
-val ValueAtFraction.Companion.IntSize: ValueAtFraction<IntSize>
-    get() = intSizeAtFraction
-
-val ValueAtFraction.Companion.Color: ValueAtFraction<Color>
-    get() = colorAtFraction
 
 private val floatAtFraction = ValueAtFraction<Float> { fraction, initialValue, finalValue ->
     initialValue + (finalValue - initialValue) * fraction

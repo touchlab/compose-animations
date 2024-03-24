@@ -128,6 +128,20 @@ fun InfiniteTransition.animateColorValues(
 )
 
 @Composable
+inline fun <reified T> InfiniteTransition.animateValues(
+    initialValue: T,
+    targetValue: T,
+    getValueAtFraction: ValueAtFraction<T>,
+    animationSpec: InfiniteRepeatableSpec<Float> = infiniteRepeatable(animation = tween()),
+    label: String = "ValueAnimation",
+): State<T> = animateValues(
+    values = arrayOf(initialValue, targetValue),
+    getValueAtFraction = getValueAtFraction,
+    animationSpec = animationSpec,
+    label = label,
+)
+
+@Composable
 fun <T> InfiniteTransition.animateValues(
     vararg values: T,
     getValueAtFraction: ValueAtFraction<T>,
