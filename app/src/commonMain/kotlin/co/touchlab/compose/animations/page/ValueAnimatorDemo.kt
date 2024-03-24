@@ -3,6 +3,7 @@ package co.touchlab.compose.animations.page
 import androidx.compose.animation.core.LinearEasing
 import androidx.compose.animation.core.RepeatMode
 import androidx.compose.animation.core.infiniteRepeatable
+import androidx.compose.animation.core.rememberInfiniteTransition
 import androidx.compose.animation.core.tween
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Box
@@ -39,6 +40,7 @@ import co.touchlab.compose.animations.shapes.Triangle
 import co.touchlab.compose.animations.utils.size
 import co.touchlab.compose.value.animator.animateColorValuesAsState
 import co.touchlab.compose.value.animator.animateFloatValuesAsState
+import co.touchlab.compose.value.animator.animateIntValues
 import co.touchlab.compose.value.animator.animateIntValuesAsState
 import kotlinx.coroutines.delay
 
@@ -169,7 +171,8 @@ private fun LoadingButton() {
 
 @Composable
 fun SpinningTriangle() {
-    val rotateXAnimation by animateIntValuesAsState(
+    val infiniteTransition = rememberInfiniteTransition("MyTriangle")
+    val rotateXAnimation by infiniteTransition.animateIntValues(
         values = arrayOf(0, 180, 180, 0, 0),
         animationSpec = infiniteRepeatable(
             animation = tween(
@@ -179,7 +182,7 @@ fun SpinningTriangle() {
         )
     )
 
-    val rotateYAnimation by animateIntValuesAsState(
+    val rotateYAnimation by infiniteTransition.animateIntValues(
         values = arrayOf(0, 0, 180, 180, 0),
         animationSpec = infiniteRepeatable(
             animation = tween(
