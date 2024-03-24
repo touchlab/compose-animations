@@ -1,0 +1,8 @@
+<component name="ArtifactManager">
+  <artifact type="jar" name="easing-js">
+    <output-path>$PROJECT_DIR$/easing/build/libs</output-path>
+    <root id="archive" name="easing-js.jar">
+      <element id="module-output" name="ComposeAnimations.easing.jsMain" />
+    </root>
+  </artifact>
+</component>

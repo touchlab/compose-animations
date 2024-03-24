@@ -17,6 +17,9 @@ googleMaterial = "1.11.0"
 
 compose = "1.6.4"
 composeCompiler = "1.5.11"
+compose-plugin = "1.6.1"
+
+voyager = "1.0.0"
 
 junit = "4.13.2"
 
@@ -30,16 +33,17 @@ androidx-espresso = { module = "androidx.test.espresso:espresso-core", version.r
 
 google-material = { module = "com.google.android.material:material", version.ref = "googleMaterial" }
 
-compose-ui = { module = "androidx.compose.ui:ui", version.ref = "compose" }
-compose-material = { module = "androidx.compose.material:material", version.ref = "compose" }
-compose-animation = { module = "androidx.compose.animation:animation", version.ref = "compose" }
 compose-toolingPreview = { module = "androidx.compose.ui:ui-tooling-preview", version.ref = "compose" }
 compose-test = { module = "androidx.compose.ui:ui-test-junit4", version.ref = "compose" }
 compose-tooling = { module = "androidx.compose.ui:ui-tooling", version.ref = "compose" }
 
 junit = { module = "junit:junit", version.ref = "junit" }
 
+voyager-navigator = { module = "cafe.adriel.voyager:voyager-navigator", version.ref = "voyager" }
+voyager-transitions = { module = "cafe.adriel.voyager:voyager-transitions", version.ref = "voyager" }
+
 [plugins]
 androidApplication = { id = "com.android.application", version.ref = "agp" }
 androidLibrary = { id = "com.android.library", version.ref = "agp" }
 kotlinMultiplatform = { id = "org.jetbrains.kotlin.multiplatform", version.ref = "kotlin" }
+jetbrainsCompose = { id = "org.jetbrains.compose", version.ref = "compose-plugin" }

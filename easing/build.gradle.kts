@@ -1,14 +1,32 @@
 plugins {
     alias(libs.plugins.androidLibrary)
     alias(libs.plugins.kotlinMultiplatform)
+    alias(libs.plugins.jetbrainsCompose)
 }
 
 kotlin {
+    jvm()
+
+    iosX64()
+    iosArm64()
+    iosSimulatorArm64()
+
+    wasmJs { browser() }
+
     androidTarget {
         compilations.all {
             kotlinOptions {
                 jvmTarget = "1.8"
             }
+        }
+    }
+
+    applyDefaultHierarchyTemplate()
+
+    sourceSets {
+        commonMain.dependencies {
+            implementation(compose.runtime)
+            implementation(compose.animation)
         }
     }
 }
@@ -35,16 +53,4 @@ android {
         sourceCompatibility = JavaVersion.VERSION_1_8
         targetCompatibility = JavaVersion.VERSION_1_8
     }
-
-    buildFeatures {
-        compose = true
-    }
-
-    composeOptions {
-        kotlinCompilerExtensionVersion = libs.versions.composeCompiler.get()
-    }
-}
-
-dependencies {
-    implementation(libs.compose.animation)
 }

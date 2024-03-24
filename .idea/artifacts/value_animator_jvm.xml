@@ -1,0 +1,8 @@
+<component name="ArtifactManager">
+  <artifact type="jar" name="value-animator-jvm">
+    <output-path>$PROJECT_DIR$/value-animator/build/libs</output-path>
+    <root id="archive" name="value-animator-jvm.jar">
+      <element id="module-output" name="ComposeAnimations.value-animator.jvmMain" />
+    </root>
+  </artifact>
+</component>
