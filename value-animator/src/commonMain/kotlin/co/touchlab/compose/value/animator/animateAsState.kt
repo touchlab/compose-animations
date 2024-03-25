@@ -13,7 +13,7 @@ import androidx.compose.ui.unit.IntOffset
 import androidx.compose.ui.unit.IntSize
 
 @Composable
-fun animateFloatValueAsState(
+fun animateFloatAsState(
     initialValue: Float,
     targetValue: Float,
     startDelay: Long = 0,

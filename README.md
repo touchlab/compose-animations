@@ -31,7 +31,7 @@ to handle this case. Most APIs have similar syntax to Compose methods to make it
 
 > Animate a value from X to Y and return the value as a state
 
-- `animateFloatValueAsState`
+- `animateFloatAsState`
 - `animateIntAsState`
 - `animateDpAsState`
 - `animateSizeAsState`
@@ -44,7 +44,7 @@ to handle this case. Most APIs have similar syntax to Compose methods to make it
 Signature:
 ```kotlin
 @Composable
-fun animateFloatValueAsState(
+fun animateFloatAsState(
     initialValue: Float,
     targetValue: Float,
     startDelay: Long = 0,
@@ -139,6 +139,31 @@ val ValueAtFraction.Companion.Color: ValueAtFraction<Color>
 ```
 
 If you create custom types, you can also provide them as extensions from the ValueAtFraction companion.
+
+#### Easings
+
+The `easing` module contains 30 different easings to control the speed of your animations. For more information, check 
+the [easing website](https://easings.net/), we've implemented all the easings available there.
+
+Example:
+
+```kotlin
+@Composable
+fun MyAnimatedComponent() {
+    val value by animateFloatAsState(
+        initialValue = 0f,
+        targetValue = 1f,
+        animationSpec = infiniteRepeatable(
+            animation = tween(
+                durationMillis = 1500,
+                easing = EaseInCirc, // Change the easing here
+            ),
+        )
+    )
+    
+    // Use your animated value
+}
+```
 
 ## About Touchlab
 

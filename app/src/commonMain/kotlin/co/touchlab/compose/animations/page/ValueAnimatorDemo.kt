@@ -41,7 +41,6 @@ import co.touchlab.compose.animations.utils.size
 import co.touchlab.compose.value.animator.animateColorValuesAsState
 import co.touchlab.compose.value.animator.animateFloatValuesAsState
 import co.touchlab.compose.value.animator.animateIntValues
-import co.touchlab.compose.value.animator.animateIntValuesAsState
 import kotlinx.coroutines.delay
 
 @Composable
