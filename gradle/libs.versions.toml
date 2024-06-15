@@ -1,23 +1,22 @@
 [versions]
-kotlin = "1.9.23"
+kotlin = "2.0.0"
 agp = "8.2.0"
 
 android-compileSdk = "34"
 android-minSdk = "21"
 android-targetSdk = "34"
 
-coreKtx = "1.12.0"
+coreKtx = "1.13.0"
 lifecycle = "2.7.0"
 appCompat = "1.6.1"
-activityCompose = "1.8.2"
+activityCompose = "1.9.0"
 androidJunit = "1.1.5"
 espresso = "3.5.1"
 
 googleMaterial = "1.11.0"
 
-compose = "1.6.4"
-composeCompiler = "1.5.11"
-compose-plugin = "1.6.1"
+compose = "1.6.6"
+compose-plugin = "1.6.10"
 
 voyager = "1.0.0"
 
@@ -49,4 +48,5 @@ androidApplication = { id = "com.android.application", version.ref = "agp" }
 androidLibrary = { id = "com.android.library", version.ref = "agp" }
 kotlinMultiplatform = { id = "org.jetbrains.kotlin.multiplatform", version.ref = "kotlin" }
 jetbrainsCompose = { id = "org.jetbrains.compose", version.ref = "compose-plugin" }
+composeCompiler = { id = "org.jetbrains.kotlin.plugin.compose", version.ref = "kotlin" }
 maven-publish = { id = "com.vanniktech.maven.publish", version.ref = "mavenPublish" }
