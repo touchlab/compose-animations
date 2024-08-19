@@ -4,12 +4,20 @@ import androidx.compose.animation.core.Easing
 import kotlin.math.pow
 
 // https://easings.net/#easeInBounce
+@Deprecated(
+    "Use default implementations from Compose Multiplatform",
+    replaceWith = ReplaceWith("androidx.compose.animation.core.EaseInBounce"),
+)
 object EaseInBounce : Easing {
     override fun transform(fraction: Float): Float =
         1 - EaseOutBounce.transform(1 - fraction)
 }
 
 // https://easings.net/#easeOutBounce
+@Deprecated(
+    "Use default implementations from Compose Multiplatform",
+    replaceWith = ReplaceWith("androidx.compose.animation.core.EaseOutBounce"),
+)
 object EaseOutBounce : Easing {
     override fun transform(fraction: Float): Float {
         val n1 = 7.5625f
@@ -34,6 +42,10 @@ object EaseOutBounce : Easing {
 }
 
 // https://easings.net/#easeInOutBounce
+@Deprecated(
+    "Use default implementations from Compose Multiplatform",
+    replaceWith = ReplaceWith("androidx.compose.animation.core.EaseInOutBounce"),
+)
 object EaseInOutBounce : Easing {
     override fun transform(fraction: Float): Float = if (fraction < 0.5f) {
         (1 - EaseOutBounce.transform(1 - 2 * fraction)) / 2

@@ -4,6 +4,10 @@ import androidx.compose.animation.core.Easing
 import kotlin.math.pow
 
 // https://easings.net/#easeInBack
+@Deprecated(
+    "Use default implementations from Compose Multiplatform",
+    replaceWith = ReplaceWith("androidx.compose.animation.core.EaseInBack"),
+)
 object EaseInBack : Easing {
     override fun transform(fraction: Float): Float {
         val c1 = 1.70158f
@@ -14,6 +18,10 @@ object EaseInBack : Easing {
 }
 
 // https://easings.net/#easeOutBack
+@Deprecated(
+    "Use default implementations from Compose Multiplatform",
+    replaceWith = ReplaceWith("androidx.compose.animation.core.EaseOutBack"),
+)
 object EaseOutBack : Easing {
     override fun transform(fraction: Float): Float {
         val c1 = 1.70158f
@@ -24,6 +32,10 @@ object EaseOutBack : Easing {
 }
 
 // https://easings.net/#easeInOutBack
+@Deprecated(
+    "Use default implementations from Compose Multiplatform",
+    replaceWith = ReplaceWith("androidx.compose.animation.core.EaseInOutBack"),
+)
 object EaseInOutBack : Easing {
     override fun transform(fraction: Float): Float {
         val c1 = 1.70158f

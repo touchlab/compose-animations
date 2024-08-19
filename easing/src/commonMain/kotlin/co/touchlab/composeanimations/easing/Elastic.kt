@@ -6,6 +6,10 @@ import kotlin.math.pow
 import kotlin.math.sin
 
 // https://easings.net/#easeInElastic
+@Deprecated(
+    "Use default implementations from Compose Multiplatform",
+    replaceWith = ReplaceWith("androidx.compose.animation.core.EaseInElastic"),
+)
 object EaseInElastic : Easing {
     override fun transform(fraction: Float): Float {
         val c4: Float = (2 * PI.toFloat()) / 3
@@ -19,6 +23,10 @@ object EaseInElastic : Easing {
 }
 
 // https://easings.net/#easeOutElastic
+@Deprecated(
+    "Use default implementations from Compose Multiplatform",
+    replaceWith = ReplaceWith("androidx.compose.animation.core.EaseOutElastic"),
+)
 object EaseOutElastic : Easing {
     override fun transform(fraction: Float): Float {
         val c4: Float = (2 * PI.toFloat()) / 3
@@ -32,6 +40,10 @@ object EaseOutElastic : Easing {
 }
 
 // https://easings.net/#easeInOutElastic
+@Deprecated(
+    "Use default implementations from Compose Multiplatform",
+    replaceWith = ReplaceWith("androidx.compose.animation.core.EaseInOutElastic"),
+)
 object EaseInOutElastic : Easing {
     override fun transform(fraction: Float): Float {
         val c5: Float = (2 * PI.toFloat()) / 4.5f
