@@ -1,4 +1,6 @@
 # Compose Animations
+> [!IMPORTANT] 
+> Many of the things this library does are now also included in the official compose animation api's and this library is no longer being actively worked on. [See more here](https://touchlab.co/compose-animations-library)
 
 Group of libraries to help you build better animations with [Compose Multiplatform][compose]
 
